@@ -10,7 +10,7 @@ import { FishingGame } from "@/components/game/FishingGame";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-deep-ocean text-white selection:bg-neon-cyan selection:text-deep-ocean">
+    <main className="min-h-screen bg-sky-100 text-slate-900 selection:bg-yellow-300 selection:text-black">
       <Navbar />
       
       <Hero />
@@ -26,15 +26,17 @@ export default function Home() {
       <section id="demo" className="py-20 relative">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-neon-pink">
-                Live Demo
-              </span>
+            <h2 className="text-5xl md:text-7xl font-bold mb-4 text-stroke tracking-wide">
+              Live Demo
             </h2>
-            <p className="text-gray-400">Try the simulation before the real hardware goes live.</p>
+            <p className="text-xl font-bold text-black">Try before you buy! 🎮</p>
           </div>
           
-          <FishingGame />
+          <div className="cartoon-card p-4 bg-black">
+            <div className="rounded-xl overflow-hidden border-2 border-white/20">
+               <FishingGame />
+            </div>
+          </div>
         </div>
       </section>
 
