@@ -3,6 +3,7 @@ import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { Token } from "@/components/sections/Token";
+import { Roadmap } from "@/components/sections/Roadmap";
 import { Subscription } from "@/components/sections/Subscription";
 import { Footer } from "@/components/sections/Footer";
 import { FishingGame } from "@/components/game/FishingGame";
