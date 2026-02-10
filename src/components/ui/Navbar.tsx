@@ -20,7 +20,7 @@ export function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -28,43 +28,45 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-deep-ocean/80 backdrop-blur-lg border-b border-white/10" : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-2 ${
+        scrolled ? "bg-white/90 backdrop-blur-md border-b-4 border-black shadow-[0_4px_0_rgba(0,0,0,0.1)]" : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-4 md:px-6 h-20 flex items-center justify-between">
+      <div className="container mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="relative">
-            <Fish className="w-8 h-8 text-neon-cyan group-hover:text-neon-pink transition-colors" />
-            <div className="absolute inset-0 bg-neon-cyan/50 blur-lg rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-          </div>
-          <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-neon-cyan to-neon-pink">
+          <motion.div 
+            whileHover={{ rotate: 20 }}
+            className="w-10 h-10 bg-cartoon-blue rounded-full border-3 border-black flex items-center justify-center shadow-[2px_2px_0px_#000]"
+          >
+            <Fish className="w-6 h-6 text-white" />
+          </motion.div>
+          <span className="text-2xl font-black text-black tracking-tight group-hover:text-cartoon-pink transition-colors" style={{ textShadow: "2px 2px 0px white" }}>
             ClawFishing
           </span>
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-6">
           {navItems.map((item) => (
             <Link
               key={item.name}
               href={item.href}
-              className="text-white/80 hover:text-neon-cyan transition-colors text-sm font-medium tracking-wide"
+              className="text-black font-bold hover:text-cartoon-pink hover:underline decoration-4 decoration-black underline-offset-4 transition-all"
             >
               {item.name}
             </Link>
           ))}
-          <Button size="sm" glow>
+          <Button size="sm" className="bg-cartoon-green hover:bg-green-400 rotate-2 hover:rotate-0 transition-transform">
             Connect Wallet
           </Button>
         </nav>
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden text-white hover:text-neon-cyan"
+          className="md:hidden p-2 bg-white border-2 border-black rounded-lg shadow-[2px_2px_0px_#000] active:translate-y-1 active:shadow-none transition-all"
           onClick={() => setIsOpen(!isOpen)}
         >
-          {isOpen ? <X /> : <Menu />}
+          {isOpen ? <X className="w-6 h-6 text-black" /> : <Menu className="w-6 h-6 text-black" />}
         </button>
       </div>
 
@@ -75,20 +77,20 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-deep-ocean/95 backdrop-blur-xl border-b border-white/10 overflow-hidden"
+            className="md:hidden bg-cartoon-yellow border-b-4 border-black overflow-hidden"
           >
             <div className="flex flex-col p-4 gap-4">
               {navItems.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-lg font-medium text-white/90 hover:text-neon-cyan p-2"
+                  className="text-xl font-black text-black hover:text-white hover:text-stroke-sm p-2 text-center"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.name}
                 </Link>
               ))}
-              <Button className="w-full" glow>
+              <Button className="w-full bg-cartoon-green" onClick={() => setIsOpen(false)}>
                 Connect Wallet
               </Button>
             </div>

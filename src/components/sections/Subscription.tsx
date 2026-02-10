@@ -14,7 +14,8 @@ const plans = [
       "View leaderboard",
       "Limited voting rights"
     ],
-    recommended: false
+    recommended: false,
+    color: "bg-white"
   },
   {
     name: "Fisher",
@@ -26,7 +27,8 @@ const plans = [
       "Keep digital catch (NFTs)",
       "Ad-free experience"
     ],
-    recommended: true
+    recommended: true,
+    color: "bg-cartoon-yellow"
   },
   {
     name: "AI Operator",
@@ -38,7 +40,8 @@ const plans = [
       "Revenue sharing",
       "Exclusive dev access"
     ],
-    recommended: false
+    recommended: false,
+    color: "bg-white"
   }
 ];
 
@@ -47,8 +50,8 @@ export function Subscription() {
     <section id="subscription" className="py-20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">Choose Your Tier</h2>
-          <p className="text-gray-400">Unlock the full power of the ClawFishing platform.</p>
+          <h2 className="text-5xl md:text-7xl font-bold mb-4 text-stroke tracking-wide">Choose Your Tier</h2>
+          <p className="text-xl font-bold text-black">Unlock the full power of ClawFishing! 🔓</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -59,28 +62,27 @@ export function Subscription() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className={`relative p-8 rounded-2xl border ${
-                plan.recommended 
-                  ? "bg-gradient-to-b from-white/10 to-transparent border-neon-cyan shadow-[0_0_30px_rgba(0,243,255,0.2)]" 
-                  : "bg-white/5 border-white/10"
-              }`}
+              whileHover={{ y: -10 }}
+              className={`cartoon-card p-8 relative ${plan.color} ${plan.recommended ? 'transform scale-105 z-10' : ''}`}
             >
               {plan.recommended && (
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-neon-cyan text-deep-ocean font-bold px-4 py-1 rounded-full text-sm">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-cartoon-pink text-white border-3 border-black font-black px-6 py-2 rounded-full shadow-[2px_2px_0px_#000] rotate-2">
                   MOST POPULAR
                 </div>
               )}
               
-              <h3 className="text-2xl font-bold mb-2 text-white">{plan.name}</h3>
+              <h3 className="text-3xl font-black mb-2 text-black">{plan.name}</h3>
               <div className="flex items-end gap-1 mb-6">
-                <span className="text-3xl font-bold text-neon-pink">{plan.price}</span>
-                {plan.period && <span className="text-gray-400 text-sm mb-1">{plan.period}</span>}
+                <span className="text-4xl font-black text-black" style={{ WebkitTextStroke: "1px black", color: plan.recommended ? "white" : "black" }}>{plan.price}</span>
+                {plan.period && <span className="text-black font-bold text-sm mb-1 opacity-70">{plan.period}</span>}
               </div>
 
               <ul className="space-y-4 mb-8">
                 {plan.features.map((feature, i) => (
-                  <li key={i} className="flex items-center gap-3 text-gray-300">
-                    <Check className="w-5 h-5 text-neon-cyan" />
+                  <li key={i} className="flex items-center gap-3 text-black font-medium">
+                    <div className="w-6 h-6 rounded-full bg-green-400 border-2 border-black flex items-center justify-center shrink-0">
+                        <Check className="w-4 h-4 text-black" />
+                    </div>
                     {feature}
                   </li>
                 ))}
@@ -89,7 +91,6 @@ export function Subscription() {
               <Button 
                 className="w-full" 
                 variant={plan.recommended ? "primary" : "outline"}
-                glow={plan.recommended}
               >
                 Choose {plan.name}
               </Button>

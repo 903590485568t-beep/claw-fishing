@@ -12,29 +12,27 @@ interface ButtonProps extends HTMLMotionProps<"button"> {
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = "primary", size = "md", glow = false, children, ...props }, ref) => {
-    const baseStyles = "inline-flex items-center justify-center rounded-lg font-bold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none";
+    const baseStyles = "inline-flex items-center justify-center rounded-2xl font-bold transition-all duration-200 border-3 border-black active:translate-y-1 active:shadow-none focus:outline-none";
     
     const variants = {
-      primary: "bg-gradient-to-r from-neon-cyan to-neon-purple text-white hover:opacity-90",
-      secondary: "bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20",
-      outline: "border-2 border-neon-cyan text-neon-cyan hover:bg-neon-cyan/10",
-      ghost: "text-white/70 hover:text-white hover:bg-white/5",
+      primary: "bg-cartoon-yellow text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-yellow-300",
+      secondary: "bg-cartoon-pink text-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-pink-400",
+      outline: "bg-white text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-50",
+      ghost: "border-transparent shadow-none hover:bg-black/5",
     };
 
     const sizes = {
-      sm: "h-9 px-4 text-sm",
-      md: "h-11 px-6 text-base",
-      lg: "h-14 px-8 text-lg",
+      sm: "h-10 px-4 text-sm",
+      md: "h-12 px-6 text-lg",
+      lg: "h-16 px-10 text-xl",
     };
-
-    const glowStyles = glow ? "shadow-[0_0_20px_rgba(0,243,255,0.5)] hover:shadow-[0_0_30px_rgba(0,243,255,0.8)]" : "";
 
     return (
       <motion.button
         ref={ref}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        className={cn(baseStyles, variants[variant], sizes[size], glowStyles, className)}
+        whileHover={{ scale: 1.05, rotate: -2 }}
+        whileTap={{ scale: 0.95, rotate: 0 }}
+        className={cn(baseStyles, variants[variant], sizes[size], className)}
         {...props}
       >
         {children}
